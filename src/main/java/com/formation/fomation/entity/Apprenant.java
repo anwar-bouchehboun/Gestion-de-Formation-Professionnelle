@@ -1,12 +1,8 @@
 package com.formation.fomation.entity;
 
+import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "apprenants")
@@ -19,18 +15,18 @@ public class Apprenant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Le nom est obligatoire")
+    @NotNull(message = "Le nom est obligatoire")
     private String nom;
 
-    @NotBlank(message = "Le prénom est obligatoire")
+    @NotNull(message = "Le prénom est obligatoire")
     private String prenom;
 
     @Email(message = "L'email doit être valide")
-    @NotBlank(message = "L'email est obligatoire")
+    @NotNull(message = "L'email est obligatoire")
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "Le niveau est obligatoire")
+    @NotNull(message = "Le niveau est obligatoire")
     private String niveau;
 
     @ManyToOne

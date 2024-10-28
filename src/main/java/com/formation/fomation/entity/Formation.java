@@ -1,16 +1,18 @@
 package com.formation.fomation.entity;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 
 import com.formation.fomation.enums.StatutFormation;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "formation")
+@Table(name = "formations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,13 +22,13 @@ public class Formation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Le titre est obligatoire")
+    @NotNull(message = "Le titre est obligatoire")
     private String titre;
 
-    @NotBlank(message = "Le niveau est obligatoire")
+    @NotNull(message = "Le niveau est obligatoire")
     private String niveau;
 
-    @NotBlank(message = "Les prérequis sont obligatoires")
+    @NotNull(message = "Les prérequis sont obligatoires")
     @Column(columnDefinition = "TEXT")
     private String prerequis;
 
@@ -53,4 +55,3 @@ public class Formation {
     @NotNull(message = "Le statut est obligatoire")
     private StatutFormation statut;
 }
-
