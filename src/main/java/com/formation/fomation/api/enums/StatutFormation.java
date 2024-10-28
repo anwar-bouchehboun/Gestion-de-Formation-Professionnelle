@@ -1,4 +1,4 @@
-package com.formation.fomation.enums;
+package com.formation.fomation.api.enums;
 
 public enum StatutFormation {
     PLANIFIEE,

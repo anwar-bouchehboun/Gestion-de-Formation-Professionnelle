@@ -1,4 +1,4 @@
-package com.formation.fomation.entity;
+package com.formation.fomation.api.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -23,13 +23,13 @@ public class Classe {
     private String nom;
 
     @NotNull(message = "Le numéro de salle est obligatoire")
-    @Pattern(regexp = "^[A-Z0-9]{1,5}$", message = "Le numéro de salle doit contenir entre 1 et 5 caractères alphanumériques")
+    @Pattern(regexp = "^[A-Z0-9]{1,5}$")
     @Column(name = "numero_salle", nullable = false)
     private String numSalle;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
     private List<Apprenant> apprenants;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
     private List<Formateur> formateurs;
 }

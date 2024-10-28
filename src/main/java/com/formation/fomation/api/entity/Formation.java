@@ -1,11 +1,11 @@
-package com.formation.fomation.entity;
+package com.formation.fomation.api.entity;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 
-import com.formation.fomation.enums.StatutFormation;
+import com.formation.fomation.api.enums.StatutFormation;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -32,26 +32,26 @@ public class Formation {
     @Column(columnDefinition = "TEXT")
     private String prerequis;
 
-    @Min(value = 1, message = "La capacité minimale doit être supérieure à 0")
+    @Min(value = 1)
     private Integer capaciteMin;
 
-    @Min(value = 1, message = "La capacité maximale doit être supérieure à 0")
+    @Min(value = 1)
     private Integer capaciteMax;
 
-    @NotNull(message = "La date de début est obligatoire")
+    @NotNull
     private LocalDate dateDebut;
 
-    @NotNull(message = "La date de fin est obligatoire")
+    @NotNull
     private LocalDate dateFin;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "formateur_id")
     private Formateur formateur;
 
-    @OneToMany(mappedBy = "formation")
+    @OneToMany(mappedBy = "formation", cascade = CascadeType.ALL)
     private List<Apprenant> apprenants;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Le statut est obligatoire")
+    @NotNull
     private StatutFormation statut;
 }
