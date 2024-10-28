@@ -1,4 +1,4 @@
-package com.Formation.Formation;
+package com.formation.fomation;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

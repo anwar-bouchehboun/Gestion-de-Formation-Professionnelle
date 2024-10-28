@@ -1,4 +1,4 @@
-package com.Formation.Formation;
+package com.formation.fomation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
