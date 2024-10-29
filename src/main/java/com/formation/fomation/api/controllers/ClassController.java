@@ -3,14 +3,15 @@ package com.formation.fomation.api.controllers;
 import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.services.ClassServices;
+import com.formation.fomation.api.utilitaire.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -59,5 +60,34 @@ public class ClassController {
         }
         log.info("Classe ne  trouvée  pas avec l'id: {}", id);
        return null ;
+    }
+
+    @GetMapping("/page")
+    @ResponseStatus(HttpStatus.OK)
+    public PageResponse<ClassDto> getAllClassesPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size) {
+        
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ClassDto> pageClasses = classServices.getAllClassesWithPagination(pageable);
+        
+        return new PageResponse<>(
+            pageClasses.getContent(),
+            pageClasses.getNumber(),
+            pageClasses.getTotalElements(),
+            pageClasses.getTotalPages()
+        );
+    }
+
+    @GetMapping("/search/{numSalle}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ClassDto> searchByNumSalle(@PathVariable String numSalle) {
+        List<ClassDto> classes = classServices.searchByNumSalle(numSalle);
+        if (classes == null || classes.isEmpty()) {
+            log.info("Aucune classe trouvée avec le numéro de salle: {}", numSalle);
+            return Collections.emptyList();
+        }
+        log.info("Classes trouvées avec le numéro de salle {}: {}", numSalle, classes.size());
+        return classes;
     }
 }

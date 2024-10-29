@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,10 +41,11 @@ public class ClassDto {
         }
 
         return classes.stream()
-                .map(classe -> ClassDto.builder()
-                        .nom(classe.getNom())
-                        .numSalle(classe.getNumSalle())
-                        .build())
+                .map(ClassDto::FindById)
                 .collect(Collectors.toList());
+    }
+
+    public static Page<ClassDto> getAllWithPagination(Page<Classe> classePage) {
+        return classePage.map(ClassDto::FindById);
     }
 }
