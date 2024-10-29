@@ -1,4 +1,4 @@
-package com.formation.fomation.api.entity;
+package com.formation.fomation.api.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

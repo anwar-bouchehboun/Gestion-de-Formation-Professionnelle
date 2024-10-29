@@ -1,4 +1,4 @@
-package com.formation.fomation.api.entity;
+package com.formation.fomation.api.models.entity;
 
 
 import javax.persistence.*;
@@ -44,7 +44,7 @@ public class Formation {
     @NotNull
     private LocalDate dateFin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "formateur_id")
     private Formateur formateur;
 

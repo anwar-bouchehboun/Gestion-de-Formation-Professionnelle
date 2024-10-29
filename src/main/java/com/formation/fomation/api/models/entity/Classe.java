@@ -1,4 +1,4 @@
-package com.formation.fomation.api.entity;
+package com.formation.fomation.api.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -23,13 +23,21 @@ public class Classe {
     private String nom;
 
     @NotNull(message = "Le numéro de salle est obligatoire")
-    @Pattern(regexp = "^[A-Z0-9]{1,5}$")
     @Column(name = "numero_salle", nullable = false)
     private String numSalle;
 
-    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classe",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apprenant> apprenants;
 
-    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classe",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Formateur> formateurs;
+
+    @Override
+    public String toString() {
+        return "Classe{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", numSalle='" + numSalle + '\'' +
+                '}';
+    }
 }
