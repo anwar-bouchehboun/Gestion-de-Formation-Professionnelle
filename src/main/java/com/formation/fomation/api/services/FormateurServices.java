@@ -1,10 +1,14 @@
 package com.formation.fomation.api.services;
 
+import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.dto.FormateurDto;
+import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.models.entity.Formateur;
 import com.formation.fomation.api.repositories.FormateurRepository;
 import com.formation.fomation.api.services.interfaces.FormateurInterfaces;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,6 +49,15 @@ public class FormateurServices implements FormateurInterfaces {
     }
 
 
+    public Page<FormateurDto> getAllClassesWithPagination(Pageable pageable) {
+        Page<Formateur> formateursPage = formateurRepository.findAllWithPagination(pageable);
+        return FormateurDto.getAllWithPagination(formateursPage);
+    }
+
+    public List<FormateurDto> searchByNumSalle(String numSalle) {
+        List<Formateur> formateurs = formateurRepository.findByClasseNomContaining(numSalle);
+        return FormateurDto.getAll(formateurs);
+    }
     @Override
     public Optional<Formateur> getById(Long id) {
         return formateurRepository.findById(id);

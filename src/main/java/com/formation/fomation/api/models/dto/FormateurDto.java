@@ -1,10 +1,12 @@
 package com.formation.fomation.api.models.dto;
 
+import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.models.entity.Formateur;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,14 +42,11 @@ public class FormateurDto {
         }
 
         return formateurs.stream()
-                .map(formateur -> FormateurDto.builder()
-                        .nom(formateur.getNom())
-                        .prenom(formateur.getPrenom())
-                        .email(formateur.getEmail())
-                        .specialite(formateur.getSpecialite())
-                        .nomClasse(formateur.getClasse() != null ? formateur.getClasse().getNom() : null)
-                        .build())
+                .map(FormateurDto::findById)
                 .collect(Collectors.toList());
+    }
+    public static Page<FormateurDto> getAllWithPagination(Page<Formateur> formateursPage) {
+        return formateursPage.map(FormateurDto::findById);
     }
 }
 
