@@ -1,5 +1,6 @@
 package com.formation.fomation.api.services;
 
+import com.formation.fomation.api.exceptions.ClasseNotFoundException;
 import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.dto.FormateurDto;
 import com.formation.fomation.api.models.entity.Classe;
@@ -31,7 +32,7 @@ public class FormateurServices implements FormateurInterfaces {
         if(formateurRepository.existsById(formateur.getId())){
             formateurRepository.save(formateur);
         }
-        return null;
+    throw new ClasseNotFoundException("Formateur non trouvé avec l'ID : " + formateur.getId());
     }
 
     @Override

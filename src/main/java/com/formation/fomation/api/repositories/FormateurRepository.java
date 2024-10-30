@@ -17,5 +17,5 @@ public interface FormateurRepository extends JpaRepository<Formateur,Long> {
     Page<Formateur> findAllWithPagination(Pageable pageable);
     @Query("SELECT f FROM Formateur f LEFT JOIN f.classe c WHERE LOWER(c.nom) LIKE LOWER(CONCAT('%', :className, '%'))")
     List<Formateur> findByClasseNomContaining(@Param("className") String className);
-    
+
 }
