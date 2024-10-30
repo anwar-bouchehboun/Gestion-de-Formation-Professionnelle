@@ -28,11 +28,10 @@ public class FormateurServices implements FormateurInterfaces {
     }
 
     @Override
-    public Formateur updateFormateur(Formateur formateur) {
+    public void updateFormateur(Formateur formateur) {
         if(formateurRepository.existsById(formateur.getId())){
-            formateurRepository.save(formateur);
+          formateurRepository.save(formateur);
         }
-    throw new ClasseNotFoundException("Formateur non trouvé avec l'ID : " + formateur.getId());
     }
 
     @Override

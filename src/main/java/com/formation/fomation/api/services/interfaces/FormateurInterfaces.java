@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface FormateurInterfaces {
 
     Formateur createFormateur(Formateur formateur);
-    Formateur updateFormateur(Formateur formateur);
+    void updateFormateur(Formateur formateur);
     void deleteFormateur(Long id);
     List<FormateurDto> getAllFormateur();
     Optional<Formateur> getById(Long id);

@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.formation.fomation.api.enums.StatutFormation;
 import lombok.*;
 
@@ -39,9 +40,11 @@ public class Formation {
     private Integer capaciteMax;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
 
     @ManyToOne(fetch = FetchType.EAGER)

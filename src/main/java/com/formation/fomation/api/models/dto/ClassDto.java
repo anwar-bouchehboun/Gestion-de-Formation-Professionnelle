@@ -1,14 +1,13 @@
 package com.formation.fomation.api.models.dto;
 
-import com.formation.fomation.api.models.entity.Apprenant;
 import com.formation.fomation.api.models.entity.Classe;
-import com.formation.fomation.api.models.entity.Formateur;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,16 +21,25 @@ public class ClassDto {
     private String nom;
     private String numSalle;
 
-
+    private List<FormateurDto> formateurs;
 
     public static ClassDto FindById(Classe classe) {
         if (classe == null) {
             return null;
         }
 
+        List<FormateurDto> formateurDtos = classe.getFormateurs() != null ?
+                classe.getFormateurs().stream()
+                        .map(formateur -> FormateurDto.builder()
+                                .nom(formateur.getNom())
+                                .build())
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
+
         return ClassDto.builder()
                 .nom(classe.getNom())
                 .numSalle(classe.getNumSalle())
+                .formateurs(formateurDtos)
                 .build();
     }
 

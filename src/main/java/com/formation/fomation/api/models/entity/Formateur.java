@@ -3,6 +3,7 @@ package com.formation.fomation.api.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class Formateur extends User {
     @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL)
     private List<Formation> formations;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "classe_id")
     private Classe classe;
 }

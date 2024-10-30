@@ -50,9 +50,9 @@ public class FormateurController {
     @GetMapping
     public List<FormateurDto> getAllFormateur(){
 
-        List<FormateurDto> formateur=formateurServices.getAllFormateur();
+      return  formateurServices.getAllFormateur();
 
-        return formateur;
+
     }
 
     @Operation(summary = "Obtenir une classe par ID")
@@ -80,13 +80,13 @@ public class FormateurController {
     })
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Formateur updateFormateur(@PathVariable Long id, @Valid @RequestBody Formateur formateur) {
+    public void updateFormateur(@PathVariable Long id, @Valid @RequestBody Formateur formateur) {
         try {
             Optional<Formateur> check = formateurServices.getById(id);
             if (check.isPresent()) {
                 formateur.setId(id);
                 log.info("Mise à jour du formateur avec l'ID : {}", id);
-                return formateurServices.updateFormateur(formateur);
+               formateurServices.updateFormateur(formateur);
             } else {
                 throw new ClasseNotFoundException("Aucun formateur trouvé avec l'ID : " + id);
             }

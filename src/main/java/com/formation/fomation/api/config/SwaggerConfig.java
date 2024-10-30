@@ -11,8 +11,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("API de Gestion des Classes")
-                        .description("Documentation de l'API pour le projet de gestion des classes")
+                .info(new Info().title("API de Gestion des Formation Pro")
+                        .description("Documentation de l'API pour le projet de gestion des Formation Pro")
                         .version("1.0"));
     }
 }
