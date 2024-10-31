@@ -9,12 +9,7 @@ Cette API REST est destinée à digitaliser la gestion des formations d'un centr
 - [Technologies Utilisées](#technologies-utilisées)
 - [Prérequis](#prérequis)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Utilisation](#utilisation)
 - [Documentation de l'API](#documentation-de-lapi)
-- [Tests](#tests)
-- [Contribution](#contribution)
-- [Licence](#licence)
 
 ## Fonctionnalités
 
@@ -71,3 +66,8 @@ git clone https://github.com/anwar-bouchehboun/Gestion-de-Formation-Professionne
 cd Formation
 mvn install
 ```
+
+## Documentation de l'API SWAGGER
+
+``` 
+     http://localhost:8080/swagger-ui/index.html#/
