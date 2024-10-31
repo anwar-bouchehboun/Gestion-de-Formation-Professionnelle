@@ -131,4 +131,12 @@ public class FormationContrller {
             pageFormations.getTotalPages()
         );
     }
+
+    @Operation(summary = "Obtenir les détails des formations")
+    @ApiResponse(responseCode = "200", description = "Détails des formations", 
+            content = @Content(schema = @Schema(implementation = FormationDto.class)))
+    @GetMapping("/details")
+    public List<FormationDto> getFormationDetails() {
+        return formationServices.getDetails();
+    }
 }

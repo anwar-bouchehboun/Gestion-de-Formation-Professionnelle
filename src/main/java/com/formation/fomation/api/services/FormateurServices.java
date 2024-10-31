@@ -1,9 +1,6 @@
 package com.formation.fomation.api.services;
 
-import com.formation.fomation.api.exceptions.ClasseNotFoundException;
-import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.dto.FormateurDto;
-import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.models.entity.Formateur;
 import com.formation.fomation.api.repositories.FormateurRepository;
 import com.formation.fomation.api.services.interfaces.FormateurInterfaces;

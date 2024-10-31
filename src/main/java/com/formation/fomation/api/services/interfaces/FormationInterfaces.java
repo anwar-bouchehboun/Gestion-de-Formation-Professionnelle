@@ -13,4 +13,5 @@ public interface FormationInterfaces {
     void deleteFormation(Long id);
     List<FormationDto> getAllFormation();
     Optional<Formation> getById(Long id);
+    List<FormationDto> getDetails();
 }

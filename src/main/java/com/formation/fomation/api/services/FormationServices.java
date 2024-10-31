@@ -50,6 +50,14 @@ public class FormationServices implements FormationInterfaces {
     public Optional<Formation> getById(Long id) {
         return formationRepository.findById(id);
     }
+
+    @Override
+    public List<FormationDto> getDetails() {
+        List<Formation> formations = formationRepository.findAll();
+        List<Formation> detailedFormations = formationRepository.findAllWithDetails(formations);
+        return FormationDto.formateurDtos(detailedFormations);
+    }
+
     public Page<FormationDto> getAllClassesWithPagination(Pageable pageable) {
         Page<Formation> formationPage = formationRepository.findAllWithPagination(pageable);
         return FormationDto.getAllWithPagination(formationPage);

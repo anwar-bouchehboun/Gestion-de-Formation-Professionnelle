@@ -1,7 +1,6 @@
 package com.formation.fomation.api.models.dto;
 
 import com.formation.fomation.api.models.entity.Apprenant;
-import com.formation.fomation.api.models.entity.Formateur;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

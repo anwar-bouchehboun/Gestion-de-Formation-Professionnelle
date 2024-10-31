@@ -2,9 +2,7 @@ package com.formation.fomation.api.controllers;
 
 
 import com.formation.fomation.api.exceptions.ClasseNotFoundException;
-import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.dto.FormateurDto;
-import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.models.entity.Formateur;
 import com.formation.fomation.api.services.FormateurServices;
 import com.formation.fomation.api.utilitaire.PageResponse;
@@ -22,7 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
