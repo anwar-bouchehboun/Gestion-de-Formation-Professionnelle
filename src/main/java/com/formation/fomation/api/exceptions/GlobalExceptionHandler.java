@@ -1,6 +1,5 @@
 package com.formation.fomation.api.exceptions;
 import com.formation.fomation.api.utilitaire.ErrorResponse;
-import com.formation.fomation.api.utilitaire.SuccessResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
