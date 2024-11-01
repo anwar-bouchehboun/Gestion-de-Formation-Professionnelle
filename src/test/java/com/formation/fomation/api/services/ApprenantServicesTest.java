@@ -9,15 +9,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
-@Import(ApprenantServices.class)
+@Transactional
+@SpringBootTest
 public class ApprenantServicesTest {
 
     @Autowired
@@ -41,7 +43,7 @@ public class ApprenantServicesTest {
         Formation f= new Formation();
         f.setId(1L);
         Classe c= new Classe();
-        c.setId(97L);
+        c.setId(1L);
         apprenant.setFormation(f);
         apprenant.setClasse(c);
         Apprenant savedApprenant = apprenantServices.createApprenant(apprenant);
@@ -65,7 +67,7 @@ public class ApprenantServicesTest {
         Formation f= new Formation();
         f.setId(1L);
         Classe c= new Classe();
-        c.setId(97L);
+        c.setId(1L);
         apprenant.setFormation(f);
         apprenant.setClasse(c);
         Apprenant savedApprenant = apprenantServices.createApprenant(apprenant);

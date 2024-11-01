@@ -1,0 +1,760 @@
+{
+	"info": {
+		"_postman_id": "0978b360-befc-49b0-b582-c978ab20ff92",
+		"name": "GESTION Formation Pro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32614157"
+	},
+	"item": [
+		{
+			"name": "class",
+			"item": [
+				{
+					"name": "Create class",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Marketing\",\r\n    \"numSalle\":\"salle 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes"
+							]
+						},
+						"description": "### Add Class\n\nThis endpoint allows you to add a new class.\n\n#### Request Body\n\n- `numSalle` (string) : The room number for the class.\n    \n\nExample:\n\n``` json\n{\n    \"numSalle\": \"salle 4\"\n}\n\n ```\n\n#### Response\n\n- Status: 400\n    \n- Content-Type: application/json\n    \n\nThe response will contain the name of the error field.\n\nExample:\n\n``` json\n{\n    \"nom\": \"\"\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "finbyid class",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/classes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes",
+								"4"
+							]
+						},
+						"description": "### Get Class Details\n\nThis endpoint retrieves the details of a specific class identified by the class ID.\n\n#### Request\n\n- Method: GET\n    \n- Endpoint: `http://localhost:8080/api/classes/4`\n    \n\n#### Response\n\nThe response for this request is a JSON object representing the details of the class. Below is a JSON schema representing the structure of the response:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"classId\": {\n      \"type\": \"string\"\n    },\n    \"className\": {\n      \"type\": \"string\"\n    },\n    \"classDescription\": {\n      \"type\": \"string\"\n    },\n    \"classSchedule\": {\n      \"type\": \"string\"\n    },\n    \"instructor\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"instructorId\": {\n          \"type\": \"string\"\n        },\n        \"instructorName\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n\n ```\n\nThis endpoint retrieves the details of a specific class by providing the class ID as a parameter in the URL.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://localhost:8080/api/classes/4`\n    \n\n#### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"classId\": {\n      \"type\": \"string\"\n    },\n    \"className\": {\n      \"type\": \"string\"\n    },\n    \"classDescription\": {\n      \"type\": \"string\"\n    },\n    \"classSchedule\": {\n      \"type\": \"string\"\n    },\n    \"instructor\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"instructorId\": {\n          \"type\": \"string\"\n        },\n        \"instructorName\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "getAll class",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete class",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/classes/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update class",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"aaaaaaa\",\r\n    \"numSalle\":\"salle x\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/classes/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/classes/page?page=1&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/classes/search/salle1111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"classes",
+								"search",
+								"salle1111"
+							]
+						},
+						"description": "### Retrieve Class Information\n\nThis endpoint retrieves information about a specific class with the given class code.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://localhost:8080/api/classes/search/salle1111`\n    \n\n#### Response\n\nThe response for this request is a JSON object containing the schema for the class information.\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"classCode\": {\n      \"type\": \"string\"\n    },\n    \"className\": {\n      \"type\": \"string\"\n    },\n    \"classDescription\": {\n      \"type\": \"string\"\n    },\n    \"classSchedule\": {\n      \"type\": \"string\"\n    },\n    \"classLocation\": {\n      \"type\": \"string\"\n    },\n    \"classCapacity\": {\n      \"type\": \"integer\"\n    }\n  }\n}\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fomrateur",
+			"item": [
+				{
+					"name": "create formateur",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nom\":\"samir\",\r\n\"prenom\":\"bouchehboun\",\r\n\"email\":\"samir@gmail.com\",\r\n\"specialite\":\"js\",\r\n\"classe\":{\r\n    \"id\":3\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "serach class ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs/search/javaAura",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs",
+								"search",
+								"javaAura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gettAllFormateurs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nom\":\"karima\",\r\n\"prenom\":\"bouchehboun\",\r\n\"email\":\"karim@gmail.com\",\r\n\"specialite\":\"cenima star x\",\r\n\"classe\":{\r\n    \"id\":1\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete formateur",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs/page?page=0&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getbyidFormateurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formateurs/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formateurs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formation",
+			"item": [
+				{
+					"name": "getallFormation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save formations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"titre\":\"php \",\r\n\"niveau\":\"niveau A1\",\r\n\"prerequis\":\"dto\",\r\n\"capaciteMin\":10,\r\n\"capaciteMax\":20,\r\n\"dateDebut\":\"2024-11-10\",\r\n\"dateFin\":\"2024-12-11\",\r\n\"statut\":\"PLANIFIEE\",\r\n\"formateur\":{\r\n    \"id\":3\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/formations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATEFORMATION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"titre\":\"java script\",\r\n\"niveau\":\"niveau B2\",\r\n\"prerequis\":\"system info\",\r\n\"capaciteMin\":10,\r\n\"capaciteMax\":20,\r\n\"dateDebut\":\"2025-01-10\",\r\n\"dateFin\":\"2025-02-11\",\r\n\"statut\":\"PLANIFIEE\",\r\n\"formateur\":{\r\n    \"id\":129\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/formations/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formations/page?page=1&size=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formations/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finbyid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "formations/details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/formations/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"formations",
+								"details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "apprenants",
+			"item": [
+				{
+					"name": "update ",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nom\":\"Kamal\",\r\n\"prenom\":\"ahmed\",\r\n\"email\":\"kamal@gmail.com\",\r\n\"niveau\":\"A3\",\r\n\"classe\":{\r\n    \"id\":33\r\n},\"formation\":{\r\n    \"id\":1\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants/193",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants",
+								"193"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants/193",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants",
+								"193"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nom\":\"bbbbbbb\",\r\n\"prenom\":\"karim\",\r\n\"email\":\"bbbbbbbbb@gmail.com\",\r\n\"niveau\":\"A3\",\r\n\"classe\":{\r\n    \"id\":1\r\n},\"formation\":{\r\n    \"id\":1\r\n}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants/page?page=1&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finbyid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/apprenants/194",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"apprenants",
+								"194"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080/api/"
+		}
+	]
+}
