@@ -3,7 +3,6 @@ package com.formation.fomation.api.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import java.util.List;

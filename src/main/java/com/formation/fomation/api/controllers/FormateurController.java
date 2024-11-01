@@ -34,7 +34,9 @@ public class FormateurController {
 
     @Operation(summary = "Créer une nouvelle formateur")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "formateur créée avec succès", content = @Content(schema = @Schema(implementation = FormateurDto.class)))
+            @ApiResponse(responseCode = "200", description = "formateur créée avec succès", content = @Content(schema = @Schema(implementation = FormateurDto.class))),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
+
     })
     @PostMapping
     public Formateur createFormateur(@Valid @RequestBody Formateur formateur){
@@ -74,7 +76,9 @@ public class FormateurController {
     @Operation(summary = "Mettre à jour une formateur existante")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "formateur mise à jour avec succès"),
-            @ApiResponse(responseCode = "404", description = "formateur non trouvée")
+            @ApiResponse(responseCode = "404", description = "formateur non trouvée"),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
+
     })
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

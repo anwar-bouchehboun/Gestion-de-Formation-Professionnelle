@@ -26,9 +26,11 @@ import java.util.stream.Collectors;
 public class ClassController {
 
     private final ClassServices classServices;
+
     @Operation(summary = "Créer une nouvelle classe")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Classe créée avec succès", content = @Content(schema = @Schema(implementation = Classe.class)))
+            @ApiResponse(responseCode = "200", description = "Classe créée avec succès", content = @Content(schema = @Schema(implementation = Classe.class))),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
     })
     @PostMapping
     public Classe createClasse(@Valid @RequestBody Classe classes) {
@@ -36,12 +38,13 @@ public class ClassController {
         Classe createdClasse = classServices.createClasse(classes);
         log.info("Classe créée avec succès : {}", createdClasse);
         return createdClasse;
-
     }
+
     @Operation(summary = "Mettre à jour une classe existante")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Classe mise à jour avec succès", content = @Content(schema = @Schema(implementation = Classe.class))),
-            @ApiResponse(responseCode = "404", description = "Classe non trouvée")
+            @ApiResponse(responseCode = "404", description = "Classe non trouvée"),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
     })
     @PutMapping("/{id}")
     public Classe updateClasse(@PathVariable Long id, @Valid @RequestBody Classe classes) {
@@ -56,6 +59,7 @@ public class ClassController {
             throw new ClasseNotFoundException("Aucune classe trouvée avec le numéro de CLASS: " + id);
         }
     }
+
     @Operation(summary = "Supprimer une classe")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Classe supprimée avec succès"),
@@ -73,19 +77,20 @@ public class ClassController {
             throw new ClasseNotFoundException("Aucune classe trouvée avec le numéro de CLASS: " + id);
         }
     }
+
     @Operation(summary = "Obtenir toutes les classes")
     @ApiResponse(responseCode = "200", description = "Liste de toutes les classes", content = @Content(schema = @Schema(implementation = ClassDto.class)))
     @GetMapping
     public List<ClassDto> getAllClasses() {
         try {
-            List<ClassDto> getAllClass= classServices.getAllClasse();;
+            List<ClassDto> getAllClass = classServices.getAllClasse();
             return getAllClass.stream().collect(Collectors.toList());
-        }catch (ClasseNotFoundException e){
-            log.error("Classe non trouvée avec l'ID: {}",e.getClass());
+        } catch (ClasseNotFoundException e) {
+            log.error("Classe non trouvée avec l'ID: {}", e.getClass());
             throw e;
         }
-
     }
+
     @Operation(summary = "Obtenir une classe par ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Classe trouvée", content = @Content(schema = @Schema(implementation = ClassDto.class))),
@@ -102,6 +107,7 @@ public class ClassController {
             throw e;
         }
     }
+
     @Operation(summary = "Obtenir toutes les classes paginées")
     @ApiResponse(responseCode = "200", description = "Liste paginée de toutes les classes")
     @GetMapping("/page")
@@ -124,9 +130,8 @@ public class ClassController {
     @Operation(summary = "Rechercher une classe par numéro de salle")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Liste des classes correspondant au numéro de salle", content = @Content(schema = @Schema(implementation = ClassDto.class))),
-            @ApiResponse(responseCode = "404", description = "Salle  non trouvée")
+            @ApiResponse(responseCode = "404", description = "Salle non trouvée")
     })
-
     @GetMapping("/search/{numSalle}")
     @ResponseStatus(HttpStatus.OK)
     public List<ClassDto> searchByNumSalle(@PathVariable String numSalle) {

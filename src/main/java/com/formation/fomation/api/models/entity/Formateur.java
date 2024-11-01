@@ -25,6 +25,7 @@ public class Formateur extends User {
     private List<Formation> formations;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull(message = "La Class est obligatoire")
     @JoinColumn(name = "classe_id")
     private Classe classe;
 }

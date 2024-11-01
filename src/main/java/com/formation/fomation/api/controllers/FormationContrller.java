@@ -33,7 +33,9 @@ public class FormationContrller {
     @Operation(summary = "Créer une nouvelle formation")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Formation créée avec succès", 
-                    content = @Content(schema = @Schema(implementation = Formation.class)))
+                    content = @Content(schema = @Schema(implementation = Formation.class))),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
+
     })
     @PostMapping
     public Formation createFormation(@Valid @RequestBody Formation formation) {
@@ -71,7 +73,9 @@ public class FormationContrller {
     @Operation(summary = "Mettre à jour une formation")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Formation mise à jour avec succès"),
-            @ApiResponse(responseCode = "404", description = "Formation non trouvée")
+            @ApiResponse(responseCode = "404", description = "Formation non trouvée"),
+            @ApiResponse(responseCode = "400", description = "Erreur de validation")
+
     })
     @PutMapping("/{id}")
     public void updateFormation(@PathVariable Long id, @Valid @RequestBody Formation formation) {
