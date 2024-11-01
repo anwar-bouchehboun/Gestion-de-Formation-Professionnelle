@@ -1,6 +1,7 @@
 package com.formation.fomation.api.controllers;
 
 import com.formation.fomation.api.exceptions.ClasseNotFoundException;
+import com.formation.fomation.api.exceptions.ClassSucesseExption;
 import com.formation.fomation.api.models.dto.ClassDto;
 import com.formation.fomation.api.models.entity.Classe;
 import com.formation.fomation.api.services.ClassServices;
@@ -39,38 +40,38 @@ public class ClassController {
     }
     @Operation(summary = "Mettre à jour une classe existante")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Classe mise à jour avec succès"),
+            @ApiResponse(responseCode = "200", description = "Classe mise à jour avec succès", content = @Content(schema = @Schema(implementation = Classe.class))),
             @ApiResponse(responseCode = "404", description = "Classe non trouvée")
     })
     @PutMapping("/{id}")
     public Classe updateClasse(@PathVariable Long id, @Valid @RequestBody Classe classes) {
-        Optional<Classe> check= classServices.getById(id);
-        if (check.isPresent()){
-        classes.setId(id);
-        return classServices.updateClasse(classes);
-        }
-        else {
+        Optional<Classe> check = classServices.getById(id);
+        if (check.isPresent()) {
+            classes.setId(id);
+            Classe updatedClasse = classServices.updateClasse(classes);
+            log.info("Classe mise à jour avec succès : {}", updatedClasse);
+            return updatedClasse;
+        } else {
+            log.error("Aucune classe trouvée avec le numéro de CLASS: {}", id);
             throw new ClasseNotFoundException("Aucune classe trouvée avec le numéro de CLASS: " + id);
-
         }
     }
     @Operation(summary = "Supprimer une classe")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Classe supprimée avec succès"),
+            @ApiResponse(responseCode = "200", description = "Classe supprimée avec succès"),
             @ApiResponse(responseCode = "404", description = "Classe non trouvée")
     })
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public void deleteClasse(@PathVariable Long id) {
-      Optional<Classe> check= classServices.getById(id);
-      if (check.isPresent()){
-          classServices.deleteClasse(id);
-          log.info("Classe supprimer avec succès : {}", id);
-      }else {
-          throw new ClasseNotFoundException("Aucune classe trouvée avec le numéro de CLASS: " + id);
-      }
-
-
+        Optional<Classe> check = classServices.getById(id);
+        if (check.isPresent()) {
+            classServices.deleteClasse(id);
+            log.info("Classe supprimée avec succès : {}", id);
+            throw new ClassSucesseExption("Classe supprimée avec succès : " + id);
+        } else {
+            log.error("Aucune classe trouvée avec le numéro de CLASS: {}", id);
+            throw new ClasseNotFoundException("Aucune classe trouvée avec le numéro de CLASS: " + id);
+        }
     }
     @Operation(summary = "Obtenir toutes les classes")
     @ApiResponse(responseCode = "200", description = "Liste de toutes les classes", content = @Content(schema = @Schema(implementation = ClassDto.class)))

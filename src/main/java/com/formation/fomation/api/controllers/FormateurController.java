@@ -1,6 +1,7 @@
 package com.formation.fomation.api.controllers;
 
 
+import com.formation.fomation.api.exceptions.ClassSucesseExption;
 import com.formation.fomation.api.exceptions.ClasseNotFoundException;
 import com.formation.fomation.api.models.dto.FormateurDto;
 import com.formation.fomation.api.models.entity.Formateur;
@@ -84,6 +85,8 @@ public class FormateurController {
                 formateur.setId(id);
                 log.info("Mise à jour du formateur avec l'ID : {}", id);
                formateurServices.updateFormateur(formateur);
+                throw new ClassSucesseExption("formateur update avec succès : " + id);
+
             } else {
                 throw new ClasseNotFoundException("Aucun formateur trouvé avec l'ID : " + id);
             }
@@ -103,6 +106,8 @@ public class FormateurController {
             if (check.isPresent()){
                 formateurServices.deleteFormateur(id);
                 log.info("formateur supprimer avec succès : {}", id);
+                throw new ClassSucesseExption("Formateur Supprimer avec succès : " + id);
+
             }else {
                 throw new ClasseNotFoundException("Aucune Formateur trouvée avec le numéro : " + id);
 

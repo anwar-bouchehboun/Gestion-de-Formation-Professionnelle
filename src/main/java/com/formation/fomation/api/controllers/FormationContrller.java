@@ -1,5 +1,6 @@
 package com.formation.fomation.api.controllers;
 
+import com.formation.fomation.api.exceptions.ClassSucesseExption;
 import com.formation.fomation.api.exceptions.ClasseNotFoundException;
 import com.formation.fomation.api.models.dto.FormationDto;
 import com.formation.fomation.api.models.entity.Formation;
@@ -78,6 +79,8 @@ public class FormationContrller {
         if (check.isPresent()) {
             formation.setId(id);
           formationServices.updateFormateur(formation);
+            throw new ClassSucesseExption("Formation Moidfier avec succès : " + id);
+
         } else {
             throw new ClasseNotFoundException("Aucune formation trouvée avec l'ID: " + id);
         }
@@ -95,6 +98,7 @@ public class FormationContrller {
         if (check.isPresent()) {
             formationServices.deleteFormation(id);
             log.info("Formation supprimée avec succès : {}", id);
+            throw new ClassSucesseExption("Formation Supprimer avec succès : " + id);
         } else {
             throw new ClasseNotFoundException("Aucune formation trouvée avec l'ID: " + id);
         }

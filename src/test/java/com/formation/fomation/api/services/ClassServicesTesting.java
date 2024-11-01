@@ -10,7 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -41,22 +40,6 @@ public class ClassServicesTesting {
         assertEquals("A101", result.getNumSalle());
     }
 
-    @Test
-    public void getAllClasse_ShouldReturnAllClasses() {
-     /*   Classe classe1 = new Classe();
-        classe1.setNom("Classe 1");
-        classe1.setNumSalle("B201");
-        classeRepository.save(classe1);
-
-        Classe classe2 = new Classe();
-        classe2.setNom("Classe 2");
-        classe2.setNumSalle("B202");
-        classeRepository.save(classe2);
-
-        List<Classe> result = classServices.getAllClasse();
-
-        assertEquals(2, result.size());*/
-    }
 
     @Test
     public void deleteClasse_ShouldRemoveClasse() {

@@ -1,5 +1,7 @@
 package com.formation.fomation.api.controllers;
 
+import com.formation.fomation.api.exceptions.ClassSucesseExption;
+import com.formation.fomation.api.exceptions.ClasseNotFoundException;
 import com.formation.fomation.api.models.dto.ApprenantDto;
 import com.formation.fomation.api.models.entity.Apprenant;
 import com.formation.fomation.api.services.ApprenantServices;
@@ -35,6 +37,8 @@ public class ApprenantController {
         apprenant.setId(id);
         apprenantServices.updateApprenant(apprenant);
         log.info("Updated apprenant with ID: {}", id);
+        throw new ClassSucesseExption("Apprenant Moidfier avec succès : " + id);
+
     }
 
     @DeleteMapping("/{id}")
@@ -42,6 +46,8 @@ public class ApprenantController {
     public void deleteApprenant(@PathVariable Long id) {
         apprenantServices.deleteApprenant(id);
         log.info("Deleted apprenant with ID: {}", id);
+        throw new ClassSucesseExption("Apprenant supprimée avec succès : " + id);
+
     }
 
     @GetMapping
@@ -53,7 +59,7 @@ public class ApprenantController {
     public ApprenantDto getApprenantById(@PathVariable Long id) {
         Optional<Apprenant> apprenant = apprenantServices.getById(id);
         return apprenant.map(ApprenantDto::findById)
-                        .orElseThrow(() -> new RuntimeException("Apprenant not found with ID: " + id));
+                        .orElseThrow(() -> new ClasseNotFoundException("Apprenant not found with ID: " + id));
     }
 
     @GetMapping("/page")
