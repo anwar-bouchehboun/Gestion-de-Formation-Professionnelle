@@ -69,5 +69,13 @@ mvn install
 
 ## Documentation de l'API SWAGGER
 
-``` 
-     http://localhost:8080/swagger-ui/index.html#/
+```
+  http://localhost:8080/swagger-ui/index.html#/
+
+```
+
+## Planification Jira
+
+```
+https://anouarab95.atlassian.net/jira/software/projects/FOR/boards/13/backlog
+```
