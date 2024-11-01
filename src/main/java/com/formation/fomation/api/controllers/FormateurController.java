@@ -45,7 +45,7 @@ public class FormateurController {
         log.info("Formateur créée avec succès : {}", createdFormateur);
         return createdFormateur;
     }
-    @Operation(summary = "Obtenir toutes les classes")
+    @Operation(summary = "Obtenir toutes les Formateurs")
     @ApiResponse(responseCode = "200", description = "Liste de toutes les classes", content = @Content(schema = @Schema(implementation = FormateurDto.class)))
     @GetMapping
     public List<FormateurDto> getAllFormateur(){
@@ -55,10 +55,10 @@ public class FormateurController {
 
     }
 
-    @Operation(summary = "Obtenir une classe par ID")
+    @Operation(summary = "Obtenir une formateur par ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Classe trouvée", content = @Content(schema = @Schema(implementation = FormateurDto.class))),
-            @ApiResponse(responseCode = "404", description = "Classe non trouvée")
+            @ApiResponse(responseCode = "200", description = "formateur trouvée", content = @Content(schema = @Schema(implementation = FormateurDto.class))),
+            @ApiResponse(responseCode = "404", description = "formateur non trouvée")
     })
     @GetMapping("/{id}")
     public FormateurDto getFormateurById(@PathVariable Long id) {
@@ -101,7 +101,7 @@ public class FormateurController {
 
     @Operation(summary = "Supprimer une formateur")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "supprimer supprimée avec succès"),
+            @ApiResponse(responseCode = "204", description = "formateur supprimée avec succès"),
             @ApiResponse(responseCode = "404", description = "supprimer non trouvée")
     })
     @DeleteMapping("/{id}")
@@ -135,6 +135,8 @@ public class FormateurController {
         log.info("Classes trouvées avec le numéro de salle {}: {}", numSalle, formateurDtoList.size());
         return formateurDtoList;
     }
+    @Operation(summary = "Obtenir les Formateurs paginées")
+    @ApiResponse(responseCode = "200", description = "Liste paginée des formations")
     @GetMapping("/page")
     @ResponseStatus(HttpStatus.OK)
     public PageResponse<FormateurDto> getAllClassesPaginated(
